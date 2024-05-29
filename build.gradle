@@ -1,0 +1,46 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.6'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '21'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	//lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	//awspring
+	implementation platform("io.awspring.cloud:spring-cloud-aws-dependencies:3.1.0")
+  	implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3'
+	//oauth2
+	implementation 'org.springframework.security:spring-security-oauth2-resource-server'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-oauth2-jose'
+	//Jackson
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
